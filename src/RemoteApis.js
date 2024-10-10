@@ -45,9 +45,7 @@ export async function registerUser(email, password, dispatch){
         body: JSON.stringify({email,password})
      })
 
-    //  if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`)
-    // }
+   
 
     const data = await response.json();
     sessionStorage.setItem("authToken", data.token)
@@ -78,9 +76,7 @@ export async function addTodoRemote(todoItem, dispatch){
         body: JSON.stringify({})
      })
 
-    //  if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`)
-    // }
+   
 
     const data = await response.json();
     console.log(3333, data)
@@ -104,9 +100,6 @@ export async function fetchTodos(dispatch){
         },
       });
 
-    //  if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`)
-    // }
 
     const data = await response.json();
     console.log(3333, data, data.data)
@@ -131,9 +124,7 @@ export async function deleteTodo(id, dispatch){
         },
       });
 
-    //  if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`)
-    // }
+  
 
     const data = await response.json();
     console.log(3333, data)
@@ -156,9 +147,6 @@ export async function updateTodo(id, dispatch){
         },
       });
 
-    //  if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`)
-    // }
 
     const data = await response.json();
     console.log(3333, data)
