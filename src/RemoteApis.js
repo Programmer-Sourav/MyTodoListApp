@@ -67,17 +67,16 @@ export async function addTodoRemote(todoItem, dispatch){
      const title = todoItem.title;
      const description = todoItem.description;
      const id = todoItem.id;
-
+     const userId = sessionStorage.getItem("userId")
+     console.log(12356, userId, title, description, id)
+     
      const url = `${BASE_URL}${POST_TODOS_ENDPOINT}` 
      const token =   sessionStorage.getItem("authToken")
      const response = await fetch(url, {
         method: "POST", 
         headers: { Authorization: `Bearer ${token}` },
-        body: JSON.stringify({})
+        body: JSON.stringify({userId, id, title, description})
      })
-
-   
-
     const data = await response.json();
     console.log(3333, data)
     //dispatch({type: "ADD_TO_DO", payload: todoItem})
