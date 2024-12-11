@@ -18,8 +18,8 @@ export async function loginUser(email, password, dispatch){
         },
         body: JSON.stringify({email,password})
      })
-
     const data = await response.json();
+    console.log("11111", data);
     console.log(777, data, data.details, data.details.token, data.details.id)
     sessionStorage.setItem("authToken", data.details.token)
     sessionStorage.setItem("userId", data.details.id)
@@ -48,10 +48,10 @@ export async function registerUser(email, password, dispatch){
    
 
     const data = await response.json();
-    sessionStorage.setItem("authToken", data.token)
-    console.log(3333, data)
-    dispatch({type: "SET_TOKEN", payload: data.token})
-    if(data.token){
+    sessionStorage.setItem("authToken", data.data.token)
+    console.log(3333, data, data.data.token)
+    dispatch({type: "SET_TOKEN", payload: data.data.token})
+    if(data.data.token){
     dispatch({type: "AUTHENTICATION_STATUS", payload: true})
     }
     dispatch({type: "SET_MESSAGE", payload: data.message})
@@ -69,13 +69,15 @@ export async function addTodoRemote(todoItem, dispatch){
      const id = todoItem.id;
      const userId = sessionStorage.getItem("userId")
      console.log(12356, userId, title, description, id)
-     
+     const paramsBody = {userId, id, title, description}
+     console.log(11222, paramsBody)
      const url = `${BASE_URL}${POST_TODOS_ENDPOINT}` 
      const token =   sessionStorage.getItem("authToken")
      const response = await fetch(url, {
         method: "POST", 
-        headers: { Authorization: `Bearer ${token}` },
-        body: JSON.stringify({userId, id, title, description})
+        headers: { Authorization: `Bearer ${token}`,
+                   "Content-Type": "application/json" },
+        body: JSON.stringify(paramsBody)
      })
     const data = await response.json();
     console.log(3333, data)
@@ -112,6 +114,7 @@ export async function fetchTodos(dispatch){
 
 
 export async function deleteTodo(id, dispatch){
+    console.log("delete ", id)
     try{
      const url = `${BASE_URL}${DELETE_TODOS_ENDPOINT}/${id}` 
      const token =   sessionStorage.getItem("authToken")
@@ -135,6 +138,7 @@ export async function deleteTodo(id, dispatch){
 }
 
 export async function updateTodo(id, dispatch){
+    console.log("PUT ", id)
     try{
      const url = `${BASE_URL}${UPDATE_TODOS_ENDPOINT}/${id}` 
      const token =   sessionStorage.getItem("authToken")

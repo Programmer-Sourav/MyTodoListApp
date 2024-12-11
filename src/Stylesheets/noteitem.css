@@ -1,0 +1,7 @@
+.noteitem{
+    height: 60px;
+    width: 752px;
+    background-color: gainsboro;
+    color: black;
+    display: flex;
+}

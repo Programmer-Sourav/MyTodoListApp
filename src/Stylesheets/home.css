@@ -1,0 +1,74 @@
+.todo-home{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.todo-heading{
+    height: 72px;
+    width: 100%;
+    min-width: 752px;
+    color: white;
+    background-color: cadetblue;
+    margin-bottom: 64px;
+}
+.todo-filter{
+    height: 72px;
+    width: 100%;
+    min-width: 752px;
+    color: white;
+    background-color: burlywood;
+    margin-bottom: 64px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+.todo-add-details{
+    display: flex;
+    flex-direction: column;
+    height: 128px;
+    width: 512px;
+    border-radius: 16px;
+    background-color: aliceblue;
+    margin: 8px;
+}
+.input-todo{
+    display: flex;
+    width: 392px;
+    height: 40px;
+    margin-top: 8px;
+    margin-left: 16px;
+    padding-left: 8px;
+    border-radius: 8px;
+}
+.input-todo:focus{
+    outline: none;
+}
+.todo-add-details-holder{
+    display: flex;
+    width: 752px;
+    height: auto;
+    margin-top: 8px;
+    margin-left: 16px;
+    padding-left: 8px;
+    margin-bottom: 8px;
+    border: 1px solid teal;
+    border-radius: 8px;
+}
+.todo-add-btn{
+    width: auto;
+    height: auto;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    margin-left: 32px;
+}
+.btn-logout{
+    background-color: teal;
+    color: white;
+    border-radius: 8px;
+    border: 1px solid teal;
+}
+.btn-logout:focus{
+    outline: none;
+}

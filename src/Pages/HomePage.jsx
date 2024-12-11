@@ -1,7 +1,10 @@
+import "../Stylesheets/home.css"
+
 import { useContext, useEffect, useState } from "react"
 import { CreateTodoContext } from "../main"
 import { useNavigate } from "react-router";
 import { addTodoRemote, fetchTodos } from "../RemoteApis";
+import AddICon from "../assets/add_icon.png"
 
 export default function HomePage(){
 
@@ -43,11 +46,11 @@ export default function HomePage(){
      if(title.length<=0){
         console.log("Sorry, Your Todo title is empty")
      }
-     else if(title.length<20){
-        console.log("Title should be atleast 20 characters long")
+     else if(title.length<5){
+        console.log("Title should be atleast 5 characters long")
      }
-     else if(title.length>50){
-        console.log("Title can not be greater than 50 characters long")
+     else if(title.length>100){
+        console.log("Title can not be greater than 100 characters")
      }
      else{
         return "success";
@@ -58,11 +61,11 @@ export default function HomePage(){
         if(description.length<=0){
             console.log("Sorry, Your Todo Description is empty")
          }
-         else if(description.length<50){
-            console.log("Description should be atleast 50 characters long")
+         else if(description.length<5){
+            console.log("Description should be atleast 5 characters long")
          }
-         else if(description.length>100){
-            console.log("Description can not be greater than 100 characters long")
+         else if(description.length>500){
+            console.log("Description can not be greater than 500 characters")
          }
          else{
             return "success";
@@ -110,7 +113,8 @@ export default function HomePage(){
 
     return(
         <div> 
-            <h3>Filter Todos</h3>
+            <h1 className="todo-heading">My Todos</h1>
+            <div className="todo-filter">
             <label>
             <input type="radio" checked={selectedFilter==="All"} onChange={()=>setSelectedFilter("All")}/>
             All </label>
@@ -120,9 +124,24 @@ export default function HomePage(){
             <label>
             <input type="radio" checked={selectedFilter==="Incomplete"} onChange={()=>setSelectedFilter("Incomplete")}/>
             Incomplete </label>
-            <h1>My Todos</h1>
+            </div>
+
+        <div className="todo-add-details-holder">
+        <div className="todo-add-details">
+            <input type="text" value={todoTitle} placeholder="Name your Todo..." onChange={(e)=>{setTodoTitle(e.target.value)}} className="input-todo"/>
+            <input type="text" value={todoDescription} placeholder= "Provide Description..." onChange={(e)=>{setTodoDescription(e.target.value)}} className="input-todo"/>
+        </div>
+        <div className="todo-add-btn">
+        <img src={AddICon} onClick={addTodo} alt="add-icon" width={40} height={40} />
+        </div>
+        </div>
+           <div>
+           {/* <button onClick={()=>createTodo()}>Add To Do</button> */}
+           </div>
+          
+           <div>
            {
-            notes.length===0? <h2> No todo to display </h2> : notes.map((todo)=>(
+            notes.length===0? <h2> Currently No todo to display </h2> : notes.map((todo)=>(
                 <li key = {todo.id}>{todo.id}-{todo.title} 
                 {/*Clicking should show description in modal/ */}
                 <button onClick={()=>editATodo(todo.id)}>Edit</button>
@@ -130,23 +149,10 @@ export default function HomePage(){
                 Status: {todo.isCompleted ? "Completed" : <button onClick={()=>markComplete(todo.id)}>Mark Complete</button>}
                 </li>
             ))
+          
            }
-           <h2>Add A New Todo</h2>
-        
-        <div class="flex flex-col justify-center items-center h-92 bg-gray-100">
-        <div class="flex flex-col h-48 w-full">  
-        <p>Todo Title
-            <input type="text" value={todoTitle} placeholder="Name your Todo..." onChange={(e)=>{setTodoTitle(e.target.value)}}/>
-        </p>
-        </div> 
-        <label>Todo Description
-            <input type="text" value={todoDescription} placeholder= "Provide Description..." onChange={(e)=>{setTodoDescription(e.target.value)}}/>
-        </label>
-          <button onClick={addTodo}>Save To Do</button>
-        </div>
-           
-           <button onClick={()=>createTodo()}>Add To Do</button>
-           <button onClick={logoutOnButtonClick}>Logout</button>
+             </div>
+             <button onClick={logoutOnButtonClick} className="btn-logout">Logout</button>
         </div>
     )
 }

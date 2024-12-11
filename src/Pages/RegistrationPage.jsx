@@ -1,3 +1,5 @@
+import "../Stylesheets/login.css"
+
 import { useContext } from "react"
 import { CreateTodoContext } from "../main";
 import { registerUser } from "../RemoteApis";
@@ -64,19 +66,19 @@ export default function RegistrationPage(){
 
 
     return(
-       <form onSubmit={handleSubmit}>
-        <div class="flex flex-col justify-center items-center h-screen bg-gray-100">
-        <div class="flex flex-col h-32 w-full">  
-        <label class="block">Email
-            <input type="text" value={loginEmail} placeholder="Enter your email..." onChange={(e)=>{setLoginEmail(e.target.value)}}/>
-        </label>
-        </div> 
-        <label>Password
-            <input type="password" value={loginPassword} placeholder= "Enter your password..." onChange={(e)=>{setLoginPassword(e.target.value)}}/>
-        </label>
-        {authenticationStatus ? navigate("/Home") : ""}
-        <input type="submit"/>
-        </div>
-       </form>
+     
+            <form onSubmit={handleSubmit}>
+             <div className="login-card">
+                <h1>Register Yourself!</h1>
+             <label>Email:
+             <input type="text" value={loginEmail} placeholder="Enter your Email...." onChange={(e)=>{setLoginEmail(e.target.value)}} className="input-box"/>
+            </label>
+            <label>Password:
+             <input type="password" value={loginPassword} placeholder="Enter your Password...." onChange={(e)=>{setLoginPassword(e.target.value)}} className="input-box"/>
+             </label>
+             {authenticationStatus ? navigate("/home") : ""}
+              <input type="submit" className="submit-btn"/>
+             </div>
+             </form>
     )
 }

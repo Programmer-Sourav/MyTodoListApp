@@ -14,13 +14,12 @@ function App() {
   return (
     <>
      <Routes>
+    
       <Route path='/' element={<RegistrationPage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/home' element={<RequiresAuth><HomePage/></RequiresAuth>}/>
-     </Routes>
-      {/* <RegistrationPage/> */}
-      {/* <LoginPage/> */}
-      {/* <HomePage/> */}
+   
+      </Routes>
     </>
   )
 }

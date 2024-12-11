@@ -1,3 +1,5 @@
+import "../Stylesheets/login.css"
+
 import { useContext } from "react";
 import { loginUser } from "../RemoteApis";
 import { CreateTodoContext } from "../main";
@@ -65,19 +67,18 @@ export default function LoginPage(){
 
 
     return(
-       <form onSubmit={handleSubmit}>
-        <div class="flex flex-col justify-center items-center h-screen bg-gray-100">
-        <div class="flex flex-col h-32 w-full">  
-        <label class="block">Email
-            <input type="text" value={loginEmail} placeholder="Enter your email..." onChange={(e)=>{setLoginEmail(e.target.value)}}/>
+  
+      <form onSubmit={handleSubmit}>
+        <div className="login-card">
+        <label>Email:
+         <input type="text" value={loginEmail} placeholder="Enter your Email...." onChange={(e)=>{setLoginEmail(e.target.value)}} className="input-box"/>
         </label>
-        </div> 
-        <label>Password
-            <input type="password" value={loginPassword} placeholder= "Enter your password..." onChange={(e)=>{setLoginPassword(e.target.value)}}/>
+        <label>Password:
+         <input type="password" value={loginPassword} placeholder="Enter your Password...." onChange={(e)=>{setLoginPassword(e.target.value)}} className="input-box"/>
         </label>
-       
-        <input type="submit"/>
+        <input type="submit" className="submit-btn"/>
         </div>
-       </form>
+      </form>
+  
     )
 }
